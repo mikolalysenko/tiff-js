@@ -472,7 +472,28 @@ TIFFParser.prototype = {
 
 					// Group 4 Fax
 					case 4:
-						// XXX: Use PDF.js code?
+						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
+						for (var m = 0, pixel = []; m < samplesPerPixel; m++) {
+							if (sampleProperties[m].hasBytesPerSample) {
+							// 	var sampleOffset = sampleProperties[m].bytesPerSample * m;
+
+							// 	pixel.push(this.getBytes(sampleProperties[m].bytesPerSample, stripOffset + byteOffset + sampleOffset));
+							// } else {
+							// 	var sampleInfo = this.getBits(sampleProperties[m].bitsPerSample, stripOffset + byteOffset, bitOffset);
+
+							// 	pixel.push(sampleInfo.bits);
+
+							// 	byteOffset = sampleInfo.byteOffset - stripOffset;
+							// 	bitOffset = sampleInfo.bitOffset;
+
+							// 	throw RangeError("Cannot handle sub-byte bits per sample");
+							// }
+						}
+
+						strips[i].push(pixel);
+
+						//Increment jIncrement based on how many elements in coding line
+						jIncrement = 0;
 					break;
 
 					// LZW
