@@ -471,11 +471,19 @@ TIFFParser.prototype = {
 					break;
 
 					// Group 4 Fax
-					case 4:
+					case 4: 
 						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
+						console.log(strips);
+						if (i > 0) {
+							var prevStrip = strip[-1];
+						} else {
+							var prevStrip = 0; //@FIXME: Dummy Value
+						}
+
 						for (var m = 0, pixel = []; m < samplesPerPixel; m++) {
 							if (sampleProperties[m].hasBytesPerSample) {
-							// 	var sampleOffset = sampleProperties[m].bytesPerSample * m;
+								console.log("sampleProperties[m]=" + sampleProperties[m].hasBytesPerSample);
+							// var sampleOffset = sampleProperties[m].bytesPerSample * m;
 
 							// 	pixel.push(this.getBytes(sampleProperties[m].bytesPerSample, stripOffset + byteOffset + sampleOffset));
 							// } else {
@@ -487,13 +495,13 @@ TIFFParser.prototype = {
 							// 	bitOffset = sampleInfo.bitOffset;
 
 							// 	throw RangeError("Cannot handle sub-byte bits per sample");
-							// }
+							}
 						}
 
 						strips[i].push(pixel);
 
 						//Increment jIncrement based on how many elements in coding line
-						jIncrement = 1; //@FIXME: Dummy value
+						jIncrement = 1000; //@FIXME: Dummy value
 					break;
 
 					// LZW
