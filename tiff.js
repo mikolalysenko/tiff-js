@@ -417,7 +417,7 @@ TIFFParser.prototype = {
 		}
 
 		// Loop through strips and decompress as necessary.
-                console.log("Compression is: " + compression);
+		console.log("Compression is: " + compression);
 		for (var i = 0; i < numStripOffsetValues; i++) {
 			var stripOffset = stripOffsetValues[i];
 			strips[i] = [];
