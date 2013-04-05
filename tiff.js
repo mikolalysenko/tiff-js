@@ -493,7 +493,7 @@ TIFFParser.prototype = {
 						strips[i].push(pixel);
 
 						//Increment jIncrement based on how many elements in coding line
-						jIncrement = 0;
+						jIncrement = 1; //@FIXME: Dummy value
 					break;
 
 					// LZW
