@@ -418,6 +418,8 @@ TIFFParser.prototype = {
 
 		// Loop through strips and decompress as necessary.
 		console.log("Compression is: " + compression);
+		console.log("Number of strips: " + numStripOffsetValues);
+
 		for (var i = 0; i < numStripOffsetValues; i++) {
 			var stripOffset = stripOffsetValues[i];
 			strips[i] = [];
@@ -473,7 +475,6 @@ TIFFParser.prototype = {
 					// Group 4 Fax
 					case 4: 
 						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
-						console.log(strips);
 						if (i > 0) {
 							var prevStrip = strip[-1];
 						} else {
