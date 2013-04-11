@@ -478,6 +478,7 @@ TIFFParser.prototype = {
 					// Group 4 Fax
 					case 4: 
 						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
+					    //And http://www.fileformat.info/mirror/egff/ch09_05.htm
 					    // console.log("Strip:" +i);
 						if (i > 0) {
 							var prevStrip = strip[i-1];
