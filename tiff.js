@@ -419,6 +419,8 @@ TIFFParser.prototype = {
 		// Loop through strips and decompress as necessary.
 		console.log("Compression is: " + compression);
 		console.log("Number of strips: " + numStripOffsetValues);
+		console.log("Samples per pixel: " + samplesPerPixel);
+		console.log("Sample properties" + sampleProperties);
 
 		for (var i = 0; i < numStripOffsetValues; i++) {
 			var stripOffset = stripOffsetValues[i];
@@ -480,11 +482,13 @@ TIFFParser.prototype = {
 						} else {
 							var prevStrip = 0; //@FIXME: Dummy Value
 						}
+						console.log(this.getBytes(1, 1));
 
-						for (var m = 0, pixel = []; m < samplesPerPixel; m++) {
-							if (sampleProperties[m].hasBytesPerSample) {
-								console.log("sampleProperties[m]=" + sampleProperties[m].hasBytesPerSample);
-							// var sampleOffset = sampleProperties[m].bytesPerSample * m;
+						for (var m = 0, pixel = []; m < imageWidth; m++) {
+							// if (sampleProperties[m].hasBytesPerSample) {
+							// 	console.log("sampleProperties[m]=" + sampleProperties[m].hasBytesPerSample);
+						    
+						    pixel.push(this.getBits(bitsPerPixel, m));
 
 							// 	pixel.push(this.getBytes(sampleProperties[m].bytesPerSample, stripOffset + byteOffset + sampleOffset));
 							// } else {
@@ -496,8 +500,8 @@ TIFFParser.prototype = {
 							// 	bitOffset = sampleInfo.bitOffset;
 
 							// 	throw RangeError("Cannot handle sub-byte bits per sample");
-							}
-						}
+							// }
+					       }
 
 						strips[i].push(pixel);
 
