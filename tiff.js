@@ -485,10 +485,10 @@ TIFFParser.prototype = {
 						console.log(this.getBytes(1, 1));
 
 						for (var m = 0, pixel = []; m < imageWidth; m++) {
-							// if (sampleProperties[m].hasBytesPerSample) {
-							// 	console.log("sampleProperties[m]=" + sampleProperties[m].hasBytesPerSample);
-						    
-						    pixel.push(this.getBits(bitsPerPixel, m));
+						    var sampleInfo = this.getBits(bitsPerPixel, stripOffset + byteOffset, bitOffset);
+						    pixel.push(sampleInfo.bits);
+						    byteOffset = sampleInfo.byteOffset - stripOffset;
+						    bitOffset = sampleInfo.bitOffset;
 
 							// 	pixel.push(this.getBytes(sampleProperties[m].bytesPerSample, stripOffset + byteOffset + sampleOffset));
 							// } else {
