@@ -478,7 +478,7 @@ TIFFParser.prototype = {
 					case 4: 
 						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
 						if (i > 0) {
-							var prevStrip = strip[-1];
+							var prevStrip = strip[i-1];
 						} else {
 							var prevStrip = 0; //@FIXME: Dummy Value
 						}
@@ -506,7 +506,7 @@ TIFFParser.prototype = {
 						strips[i].push(pixel);
 
 						//Increment jIncrement based on how many elements in coding line
-						jIncrement = 1000; //@FIXME: Dummy value
+						jIncrement = imageWidth
 					break;
 
 					// LZW
