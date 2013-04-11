@@ -427,6 +427,7 @@ TIFFParser.prototype = {
 			strips[i] = [];
 
 			var stripByteCount = stripByteCountValues[i];
+			console.log("Strip byte count: " + stripByteCount);
 
 			// Loop through pixels.
 			for (var byteOffset = 0, bitOffset = 0, jIncrement = 1, getHeader = true, pixel = [], numBytes = 0, sample = 0, currentSample = 0; byteOffset < stripByteCount; byteOffset += jIncrement) {
@@ -477,12 +478,12 @@ TIFFParser.prototype = {
 					// Group 4 Fax
 					case 4: 
 						//Using http://www.itu.int/rec/T-REC-T.6-198811-I/en
+					    // console.log("Strip:" +i);
 						if (i > 0) {
 							var prevStrip = strip[i-1];
 						} else {
 							var prevStrip = 0; //@FIXME: Dummy Value
 						}
-						console.log(this.getBytes(1, 1));
 
 						for (var m = 0, pixel = []; m < imageWidth; m++) {
 						    var sampleInfo = this.getBits(bitsPerPixel, stripOffset + byteOffset, bitOffset);
@@ -633,6 +634,7 @@ TIFFParser.prototype = {
 			}
 
 			// Loop through the strips in the image.
+			// console.log("NumStrips:" + numStrips);
 			for (var i = 0; i < numStrips; i++) {
 				// The last strip may be short.
 				if ((i + 1) === numStrips) {
@@ -641,6 +643,7 @@ TIFFParser.prototype = {
 
 				var numPixels = strips[i].length;
 				var yPadding = numRowsInPreviousStrip * i;
+				console.log("Numpixels:"+numPixels);
 
 				// Loop through the rows in the strip.
 				for (var y = 0, j = 0; y < numRowsInStrip, j < numPixels; y++) {
