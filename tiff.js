@@ -673,8 +673,11 @@ TIFFParser.prototype = {
 								}
 
 								// Invert samples.
-								//TODO There is a problem here when the compression is 4
-								pixelSamples.forEach(function(sample, index, samples) { samples[index] = invertValue - sample; });
+								//TODO pixelSamples occasionally goes undefined.
+								if(pixelSamples) {
+								    pixelSamples.forEach(function(sample, index, samples) { samples[index] = invertValue - sample; });
+								}
+								break;
 
 							// Bilevel or Grayscale
 							// BlackIsZero
