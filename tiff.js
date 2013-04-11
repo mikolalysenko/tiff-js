@@ -669,6 +669,7 @@ TIFFParser.prototype = {
 								}
 
 								// Invert samples.
+								//TODO There is a problem here when the compression is 4
 								pixelSamples.forEach(function(sample, index, samples) { samples[index] = invertValue - sample; });
 
 							// Bilevel or Grayscale
